@@ -1,0 +1,81 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/core.puml
+skinparam linetype ortho
+left to right direction
+GREY_ARROW
+'!@Item 
+ interface casestudy.customer.CustomerRepository<<Repository>> { 
++findByCustomerID(String ) 
++findByName(String ) 
+}
+ class casestudy.cargo.CargoRepository<<Repository>> { 
++findByCustomerID(String ) 
++findByTackingID(String ) 
+}
+ class casestudy.shared.CustomerShared<<ValueObject>> { 
+~Customer ID
+}
+ class casestudy.cargo.HandlingEvent<<Entity>> { 
+-Date completeTime
+-String type
++CarrierMovement carrierMovement
+-Cargo[] cargos
+}
+ class casestudy.cargo.DeliverySpecification<<ValueObject>> { 
++Date arrivalTime
+~LocationShared locationShared
+~LocationService locationService
++verify(LocationShared ) 
+}
+ class casestudy.cargo.CarrierMovement<<Entity>> { 
+-long scheduleID
++LocationShared to
++LocationShared from
+}
+ class casestudy.customer.Customer<<Entity>> { 
++String name
++String customerID
+}
+ class casestudy.cargo.Cargo<<AggregateRoot, Entity>> { 
+-String trackingID
+-Customer[] customers
++DeliveryHistory deliveryHistory
+-DeliverySpecification deliverySpecification
+~CustomerShared customerShared
+}
+ class casestudy.shared.LocationShared<<ValueObject>> { 
+~String portCode
+~Location location
+}
+ class casestudy.cargo.DeliveryHistory<<Entity>> { 
+~String id
+~HandlingEvent[] events
+}
+abstract class casestudy.location.LocationService<<DomainService>> { 
++resolveByPortCode(String ) 
+}
+ class casestudy.location.Location<<ValueObject>> { 
+~String portCode
+}
+'!@Relation 
+casestudy.shared.CustomerShared --> casestudy.customer.Customer
+
+casestudy.cargo.HandlingEvent --> casestudy.cargo.CarrierMovement
+casestudy.cargo.HandlingEvent --> "*" casestudy.cargo.Cargo:handled 
+
+casestudy.cargo.DeliverySpecification --> casestudy.location.LocationService
+casestudy.cargo.DeliverySpecification --> casestudy.shared.LocationShared:destination 
+
+casestudy.cargo.CarrierMovement --> casestudy.shared.LocationShared
+
+casestudy.cargo.Cargo --> "*" casestudy.customer.Customer
+casestudy.cargo.Cargo --> casestudy.cargo.DeliveryHistory
+casestudy.cargo.Cargo --> casestudy.shared.CustomerShared
+casestudy.cargo.Cargo --> casestudy.cargo.DeliverySpecification:goal 
+
+casestudy.shared.LocationShared --> casestudy.location.Location
+
+casestudy.cargo.DeliveryHistory --> "*" casestudy.cargo.HandlingEvent
+
+
+@enduml
