@@ -1,0 +1,55 @@
+@startuml
+left to right direction
+!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/core.puml
+
+skinparam rectangle {
+ roundCorner 100
+}
+package xContext <<Rectangle>> #8B9BAC{
+class A <<(E,#FF7700)Entity>> #8ED4D1{
+}
+hide A members
+class B <<(V,#148610) ValueObject>> #861F1B{
+}
+hide B members
+class C <<(R,#5C95D1) ArrregateRoot>> #D1A349{
+}
+hide C members
+class D <<(P,#7720B0) ArrregatePart>> #476EB0{
+}
+hide D members
+class E <<(D,#AF1603) DomainService>> #544E15{
+}
+hide E members
+  A-->B
+  A-->D
+  A-->C
+  C-->D
+  D-->A
+  E-->B
+}
+
+package yContext <<Rectangle>> #8B9BAC{
+class F <<(S,#C49AC3) Specification>> #2FD92A{
+}
+hide F members
+class 2 <<(T,#207EC4) Event>> #C45E24{
+}
+hide 2 members
+class 1 <<(E,#FF7700)Entity>> #8ED4D1{
+}
+class 4 <<(P,#7720B0) ArrregatePart>> #476EB0{
+}
+hide 4 members
+hide 1 members
+  D-->F
+  F-->1
+  2-->1
+  C-->2
+  4-->1
+}
+
+
+
+
+@enduml
