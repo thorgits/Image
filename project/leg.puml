@@ -12,10 +12,10 @@ hide A members
 class B <<(V,#148610) ValueObject>> #861F1B{
 }
 hide B members
-class C <<(R,#5C95D1) ArrregateRoot>> #D1A349{
+class C <<(R,#5C95D1) AggregateRoot>> #D1A349{
 }
 hide C members
-class D <<(P,#7720B0) ArrregatePart>> #476EB0{
+class D <<(P,#7720B0) AggregatePart>> #476EB0{
 }
 hide D members
 class E <<(D,#AF1603) DomainService>> #544E15{
