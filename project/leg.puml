@@ -36,7 +36,7 @@ hide F members
 class 2 <<(T,#207EC4) Event>> #C45E24{
 }
 hide 2 members
-class 1 <<(E,#FF7700)Entity>> #8ED4D1{
+class 1 <<(R,#e2b8b8)Repository>> #FFFFFF{
 }
 class 4 <<(P,#7720B0) ArrregatePart>> #476EB0{
 }
