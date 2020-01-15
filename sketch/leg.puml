@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/core.puml
+skinparam rectangle {
+ roundCorner 100
+}
+'!@Sketch 
+package Leg <<Rectangle>> #8B9BAC{
+ class CustomerRepository <<(R,#e2b8b8)Repository>> #FFFFFF {}
+hide CustomerRepository members
+ class CargoRepository <<(R,#e2b8b8)Repository>> #FFFFFF {}
+hide CargoRepository members
+ class LegReocrd <<(V,#148610) ValueObject>> #861F1B {}
+hide LegReocrd members
+ class Leg <<(E,#FF7700)Entity>> #8ED4D1 {}
+hide Leg members
+'!@Relation 
+CustomerRepository-->LegReocrd
+LegReocrd-->Leg
+CustomerRepository-->Leg
+CargoRepository-->LegReocrd
+Leg -->Cargo
+}
+@enduml
