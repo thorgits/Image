@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/core.puml
+skinparam rectangle {
+ roundCorner 100
+}
+'!@Sketch 
+package Cargo <<Rectangle>> #8B9BAC{
+ class CustomerRepository <<(R,#e2b8b8)Repository>> #FFFFFF {}
+hide CustomerRepository members
+ class CargoRepository <<(R,#e2b8b8)Repository>> #FFFFFF {}
+hide CargoRepository members
+ class CustomerShared <<(V,#148610) ValueObject>> #861F1B {}
+hide CustomerShared members
+ class HandlingEvent <<(E,#FF7700)Entity>> #8ED4D1 {}
+hide HandlingEvent members
+ class DeliverySpecification <<(V,#148610) ValueObject>> #861F1B {}
+hide DeliverySpecification members
+ class CarrierMovement <<(E,#FF7700)Entity>> #8ED4D1 {}
+hide CarrierMovement members
+ class Customer <<(E,#FF7700)Entity>> #8ED4D1 {}
+hide Customer members
+ class Cargo <<(R,#5C95D1) AggregateRoot>> #D1A349 {}
+hide Cargo members
+ class LocationShared <<(V,#148610) ValueObject>> #861F1B {}
+hide LocationShared members
+ class DeliveryHistory <<(E,#FF7700)Entity>> #8ED4D1 {}
+hide DeliveryHistory members
+ class LocationService <<(D,#AF1603) DomainService>> #544E15 {}
+hide LocationService members
+ class Location <<(V,#148610) ValueObject>> #861F1B {}
+hide Location members
+'!@Relation 
+CustomerShared --> Customer
+HandlingEvent --> Cargo
+HandlingEvent --> CarrierMovement
+DeliverySpecification --> LocationService
+DeliverySpecification --> LocationShared
+CarrierMovement --> LocationShared
+Cargo --> Customer
+Cargo --> DeliveryHistory
+Cargo --> CustomerShared
+Cargo --> DeliverySpecification
+LocationShared --> Location
+DeliveryHistory --> HandlingEvent
+}
+@enduml
