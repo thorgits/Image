@@ -1,6 +1,5 @@
-@startuml
 (Car)-->(Bus)
 (Car)-->(Tire)
+(Tire)-->(Engine)
 (Car)-->(Engine)
 (Bus)-->(Driver)
-@enduml
