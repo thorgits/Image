@@ -1,0 +1,19 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/core.puml
+top to bottom direction 
+GREY_ARROW
+'!@Sequence 
+(Cargo) --> (Customer)
+(Cargo) --> (DeliveryHistory)
+(DeliveryHistory) --> (HandlingEvent)
+(HandlingEvent) .[#red].> (Cargo):circular
+(HandlingEvent) --> (CarrierMovement)
+(CarrierMovement) --> (LocationShared)
+(LocationShared) --> (Location)
+(Cargo) --> (CustomerShared)
+(CustomerShared) --> (Customer)
+(Cargo) --> (DeliverySpecification)
+(DeliverySpecification) --> (LocationService)
+(DeliverySpecification) --> (LocationShared)
+
+@enduml
