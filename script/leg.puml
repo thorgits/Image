@@ -1,16 +1,17 @@
 @startuml
 
-actor A
-actor B
+class Car {
+  color
+  model
+  +start()
+  #run()
+  #stop()
+}
 
-A -up-> (up)
-A -right-> (center)
-A -down-> (down)
-A -left-> (left)
 
-B -up-> (up)
-B -left-> (center)
-B -right-> (right)
-B -down-> (down)
+Car --> Bus
+Car --> Tire
+Car --> Engine
+Bus --> Driver
 
 @enduml
